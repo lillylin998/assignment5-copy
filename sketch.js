@@ -6,17 +6,20 @@ let valText;
 let valSlider = 12;
 let texts = [];
 let colorR = 255, colorG = 255, colorB = 255;
-let font;
+let defaultFont,font1,font2,font3;
 let x=10;
 let y=10;
 
 function preload(){
-    font = loadFont('KeeponTruckin.ttf');
+    defaultFont = loadFont('Quicksand_Bold.otf');
+    font1 = loadFont('KeeponTruckin.ttf');
+    //font2 = loadFont('Quicksand_Bold.otf');
+    //font3 = loadFont('');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  textFont(font);
+ // textFont(font1);
 
   b = createButton('change color');
     b.position(windowWidth/2, windowHeight-100);
@@ -25,7 +28,6 @@ function setup() {
     slide.position(windowWidth/2, windowHeight-75);
   textInput = createInput('');
     textInput.position(windowWidth/2,windowHeight/2);
-   // textInput.input(textDisplay);
   submit = createButton('submit');
     submit.position(windowWidth/2, windowHeight/2+20);
     submit.mousePressed(getText)
@@ -35,8 +37,13 @@ function draw() {
   background(0);
   drawStars();
   sliderVal();
- // submit.mousePressed(textDisplay)
   textDisplay();
+    push();
+    textFont(defaultFont);
+    textSize(20)
+    fill(255);
+    text('change size', 0, 180);
+    pop();
   
 
 }
@@ -47,25 +54,14 @@ function drawStars(){
 
 function getText(){
     valText = textInput.value();
-    texts.push(valText);
-  //  fill(255)
-  //  text(texts[0], 10,10);
-  //  print(valText);
+    //texts.push(valText);
+    texts.push(new Word(valText, random(10,width/2),random(10,height/2),1,random(1000,1500)));
 }
 
 function textDisplay(){
     if (texts[0]){
-        //x=random(0,10)
         for(let i of texts){
-        fill(colorR,colorG,colorB);
-        textSize(valSlider)
-        rotateX(millis()/1500);
-        rotateZ(millis()/1780);
-        //translate(x,y);
-        text(i,x,y);
-       // print('hello');
-           // x+= random(10,20);
-           // y+= random(10,20);
+            i.display();
         }
     }
 }
