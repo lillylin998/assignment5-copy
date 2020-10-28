@@ -2,6 +2,8 @@ let textInput;
 let slide;
 let b;
 let submit;
+let reset;
+let divInput, divSlide;
 let valText;
 let valSlider = 12;
 let texts = [];
@@ -13,8 +15,8 @@ let y=10;
 function preload(){
     defaultFont = loadFont('Quicksand_Bold.otf');
     font1 = loadFont('KeeponTruckin.ttf');
-    //font2 = loadFont('Quicksand_Bold.otf');
-    //font3 = loadFont('');
+    font2 = loadFont('Shaka Pow.ttf');
+    font3 = loadFont('Mermaid1001.ttf');
 }
 
 function setup() {
@@ -22,40 +24,53 @@ function setup() {
  // textFont(font1);
 
   b = createButton('change color');
-    b.position(windowWidth/2, windowHeight-100);
+    b.position(windowWidth/10, windowHeight-100);
     b.mousePressed(changeColor);
+    b.style('font-family: defaultFont');
+    b.style('border-radius: 10px');
+    b.style('height: 25px');
   slide = createSlider(0,200,12,1);
-    slide.position(windowWidth/2, windowHeight-75);
+    slide.position(windowWidth/3, windowHeight-100);
+    slide.class('slider');
+  divSlide = createDiv('change size');
+    divSlide.style('font-family: defaultFont');
+    divSlide.style('color: white');
+    divSlide.position(windowWidth/3+5, windowHeight-75);
   textInput = createInput('');
-    textInput.position(windowWidth/2,windowHeight/2);
+    textInput.position(windowWidth/2-50,windowHeight/2);
+    textInput.style('font-family: defaultFont');
+    textInput.style('height: 15px')
+    textInput.style('width: 150px');
+  divInput = createDiv('write anything :)');
+    divInput.style('font-family: defaultFont');
+    divInput.style('color: white');
+    divInput.position(windowWidth/2-50,windowHeight/2-25);
   submit = createButton('submit');
-    submit.position(windowWidth/2, windowHeight/2+20);
+    submit.position(windowWidth/2+50, windowHeight/2+25);
     submit.mousePressed(getText)
+    submit.style('font-family: defaultFont');
+    submit.style('border-radius: 10px');
+    submit.style('height: 20px');
+  reset = createButton('reset');
+    reset.position(windowWidth*9/10, windowHeight-100);
+    reset.mousePressed(resetScreen);
+    reset.style('font-family: defaultFont');
+    reset.style('border-radius: 10px');
+    reset.style('height: 25px');
+
 }
 
 function draw() {
   background(0);
-  drawStars();
   sliderVal();
-  textDisplay();
-    push();
-    textFont(defaultFont);
-    textSize(20)
-    fill(255);
-    text('change size', 0, 180);
-    pop();
-  
+  textDisplay();  
 
 }
 
-function drawStars(){
-    
-}
 
 function getText(){
     valText = textInput.value();
-    //texts.push(valText);
-    texts.push(new Word(valText, random(10,width/2),random(10,height/2),1,random(1000,1500)));
+    texts.push(new Word(valText, random(10,width/2),random(10,height/2),random(1,3),random(1000,2000)));
 }
 
 function textDisplay(){
@@ -83,10 +98,22 @@ function changeColor(){
     colorB = random(0,255);
 }
 
+function resetScreen(){
+    if (texts[0]){
+        texts = [];
+        colorR = 255;
+        colorG = 255;
+        colorB = 255;
+    }
+}
+
 
 function reposition(){
-    b.position(windowWidth/2, windowHeight-100);
-    slide.position(windowWidth/2, windowHeight-75);
-    textInput.position(windowWidth/2,windowHeight/2);
-    submit.position(windowWidth/2, windowHeight/2+20);
+    b.position(windowWidth/10, windowHeight-100);
+    slide.position(windowWidth/3, windowHeight-100);
+    divSlide.position(windowWidth/3+5, windowHeight-75);
+    textInput.position(windowWidth/2-50,windowHeight/2);
+    divInput.position(windowWidth/2-50,windowHeight/2-25);
+    submit.position(windowWidth/2+50, windowHeight/2+25);
+    reset.position(windowWidth*9/10, windowHeight-100);
 }

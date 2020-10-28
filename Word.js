@@ -18,6 +18,7 @@ class Word {
         
         fill(colorR, colorG, colorB);
         textSize(valSlider);
+        textAlign(CENTER);
         rotateX(millis()/this.speed);
         rotateZ(millis()/this.speed/20);
         text(this.text,this.x,this.y);
