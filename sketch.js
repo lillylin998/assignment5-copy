@@ -9,8 +9,6 @@ let valSlider = 12;
 let texts = [];
 let colorR = 255, colorG = 255, colorB = 255;
 let defaultFont,font1,font2,font3;
-let x=10;
-let y=10;
 
 function preload(){
     defaultFont = loadFont('Quicksand_Bold.otf');
@@ -29,34 +27,44 @@ function setup() {
     b.style('font-family: defaultFont');
     b.style('border-radius: 10px');
     b.style('height: 25px');
+    b.style('background-color: white');
+    
   slide = createSlider(0,200,12,1);
     slide.position(windowWidth/3, windowHeight-100);
     slide.class('slider');
+    
   divSlide = createDiv('change size');
     divSlide.style('font-family: defaultFont');
     divSlide.style('color: white');
     divSlide.position(windowWidth/3+5, windowHeight-75);
+    
   textInput = createInput('');
     textInput.position(windowWidth/2-50,windowHeight/2);
     textInput.style('font-family: defaultFont');
     textInput.style('height: 15px')
     textInput.style('width: 150px');
+    
   divInput = createDiv('write anything :)');
     divInput.style('font-family: defaultFont');
     divInput.style('color: white');
     divInput.position(windowWidth/2-50,windowHeight/2-25);
+    
   submit = createButton('submit');
     submit.position(windowWidth/2+50, windowHeight/2+25);
     submit.mousePressed(getText)
     submit.style('font-family: defaultFont');
     submit.style('border-radius: 10px');
     submit.style('height: 20px');
+    submit.style('background-color: white');
+
   reset = createButton('reset');
     reset.position(windowWidth*9/10, windowHeight-100);
     reset.mousePressed(resetScreen);
     reset.style('font-family: defaultFont');
     reset.style('border-radius: 10px');
     reset.style('height: 25px');
+    reset.style('background-color: white');
+
 
 }
 
